@@ -1,16 +1,31 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { startLogout } from "../../actions/auth";
 import JournalEntries from "./JournalEntries";
 
 const Sidebar = () => {
+
+	const dispatch = useDispatch();
+	const { name } = useSelector(state => state.auth);
+
+	const history = useHistory();
+
+	const handleLogout = () => {
+		history.replace("/auth");
+
+		dispatch(startLogout());
+	};
+
 	return (
 		<aside className="journal__sidebar">
 			<div className="mt-5  journal__sidebar-navbar">
 				<h3 className="journal__sidebar-name">
 					<i className="far fa-moon"></i>
-					<span> Arnau</span>
+					<span> { name }</span>
 				</h3>
 
-				<button className="btn"> Logout </button>
+				<button className="btn" onClick={handleLogout}> Logout </button>
 			</div>
 
 			<div className="journal__new-entry">
