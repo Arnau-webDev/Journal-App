@@ -9,7 +9,7 @@ const NoteScreen = () => {
 			<div className="notes__content">
 				<input 
 					type="text"
-					placeholder="Some awesome title" 
+					placeholder="Your awesome title" 
 					className="notes__title-input"
 					autoComplete="off"
 				/>

@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { notesReducer } from "../../reducers/notesReducer";
 
 const JournalEntry = () => {
+
 	return (
 		<div className="journal__entry">
 			<div className="journal__entry-left-content">
