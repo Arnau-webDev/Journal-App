@@ -1,7 +1,20 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { useForm } from "../../hooks/useForm";
 import NotesAppBar from "./NotesAppBar";
 
 const NoteScreen = () => {
+
+	const { active: note } = useSelector(state => state.notes);
+	console.log(note);
+
+	const [ formValues, handleInputChange ] = useForm(note);
+	console.log(formValues);
+
+	// Entendre la implementació de useForm amb el NoteScreen
+
+	// const { title, body } = active; 
+
 	return (
 		<div className="notes__main-content">
 			<NotesAppBar />
@@ -22,11 +35,10 @@ const NoteScreen = () => {
 						alt="landscape" 
 						className="notes__image"
 					/>
-                        
+					
 				</div>
 			</div>
-		</div>
-	);
+		</div>);
 };
 
 export default NoteScreen;

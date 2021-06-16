@@ -1,30 +1,43 @@
 import React from "react";
+import moment from "moment";
 import { useDispatch } from "react-redux";
 import { notesReducer } from "../../reducers/notesReducer";
+import { activeNote } from "../../actions/notes";
 
-const JournalEntry = () => {
+const JournalEntry = ({ note }) => {
+
+	const dispatch = useDispatch(notesReducer);
+
+	const noteDate = moment(note.date);
+
+	const handleActiveNote = () => {
+		dispatch(activeNote(note.id, note));
+	};
 
 	return (
-		<div className="journal__entry">
+		<div className="journal__entry" onClick={handleActiveNote}>
 			<div className="journal__entry-left-content">
-				<div 
-					className="journal__entry-picture"
-					style= { {
-						backgroundSize: "cover",
-						backgroundImage: "url(https://static.vecteezy.com/system/resources/previews/000/246/312/original/mountain-lake-sunset-landscape-first-person-view-vector.jpg)"
-					} }
-				>
-				</div>
+				{
+					note.url !== undefined &&
+					<div 
+						className="journal__entry-picture"
+						style= { {
+							backgroundSize: "cover",
+							backgroundImage: `url(${note.url})`
+						} }
+					>
+					</div>
+				}
 
 				<div className="journal__entry-body">
-					<p className="journal__entry-title">Un nuevo Dia</p>
-					<p className="journal__entry-content">Lorem ipsum dolor sit amet.</p>
+					<p className="journal__entry-title">{note.title}</p>
+					<p className="journal__entry-content">{note.body}</p>
 				</div>
 			</div>
 
 			<div className="journal__entry-date-box">
-				<span>Monday</span>
-				<h4>28</h4>
+				<span>{ noteDate.format("dddd") }</span>
+				<h4>{ noteDate.format("Do") }</h4>
 			</div>
 		</div>
 	);
