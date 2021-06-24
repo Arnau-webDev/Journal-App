@@ -3,6 +3,7 @@ import { loadNotes } from "../helpers/loadNotes";
 import { types } from "../types/types";
 
 import Swal from "sweetalert2";
+import { fileUpload } from "../helpers/fileUpload";
 
 export const startNewNote = () => {
 	return async (dispacth, getState) => {
@@ -77,6 +78,15 @@ export const refreshNote = ( id, note) => {
 			}
 		}
 	};
-}; 
+};
+
+export const startUploading = (file) => {
+	return async ( dispatch, getState ) => {
+		const activeNote = getState().notes.active;
+
+		const fileUrl = await fileUpload(file);
+		console.log(fileUrl);
+	};
+};
 
 // reactJournal
