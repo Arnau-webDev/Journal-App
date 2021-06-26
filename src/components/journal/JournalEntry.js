@@ -15,7 +15,7 @@ const JournalEntry = ({ note }) => {
 	};
 
 	return (
-		<div className="journal__entry" onClick={handleActiveNote}>
+		<div className="journal__entry animate__animated animate__fadeIn animate__faster" onClick={handleActiveNote}>
 			<div className="journal__entry-left-content">
 				{
 					note.url !== undefined &&
@@ -31,7 +31,11 @@ const JournalEntry = ({ note }) => {
 
 				<div className="journal__entry-body">
 					<p className="journal__entry-title">{note.title}</p>
-					<p className="journal__entry-content">{note.body}</p>
+					{		
+						note.body.length > 130 
+							?	<p className="journal__entry-content">{note.body.slice(0, 130) + "..."}</p>
+							: 	<p className="journal__entry-content">{note.body}</p>
+					}
 				</div>
 			</div>
 

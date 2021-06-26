@@ -1,17 +1,20 @@
 import React from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { sendResetPasswordEmail, startGoogleLogin, startLoginEmailPassword } from "../../actions/auth";
 import { useForm } from "../../hooks/useForm";
+import Swal from "sweetalert2";
+import { uiVisitedLoginPageOnce } from "../../actions/ui";
 
 const LoginScreen = () => {
 
 	const dispatch = useDispatch();
-	const { loading } = useSelector(state => state.ui);
+	const { loading, visitedFirstTime } = useSelector(state => state.ui);
 
 	const [formValues, handleInputChange] = useForm({
-		email: "arnauprueba@gmail.com",
-		password: 123456
+		email: "default@gmail.com",
+		password: "admin123"
 	});
 
 	const { email, password } = formValues;
@@ -30,11 +33,18 @@ const LoginScreen = () => {
 		dispatch(sendResetPasswordEmail(email));
 	};
 
+	useEffect(() => {
+		if(visitedFirstTime) {
+			Swal.fire("You can use the default user on the form if you don't want to register yourself", "", "info");
+			dispatch(uiVisitedLoginPageOnce());
+		}
+	}, []);
+
 	return (
 		<>
 			<h3 className="auth__title">Login</h3>
 
-			<form onSubmit={handleLogin}>
+			<form onSubmit={handleLogin} className="animate__animated animate__fadeIn animate__faster">
 				<input 
 					type="text" 
 					placeholder="Email" 

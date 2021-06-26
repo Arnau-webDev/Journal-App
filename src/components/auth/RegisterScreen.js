@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { startRegisterEmailPassword } from "../../actions/auth";
 import { useForm } from "../../hooks/useForm";
@@ -16,14 +16,14 @@ const RegisterScreen = () => {
 	const dispatch = useDispatch(authReducer);
 	const uiDispatch = useDispatch(uiReducer);
 
-	const uiState = useSelector(state => state.ui);
-	const { msgError: error } = uiState;
+	// const uiState = useSelector(state => state.ui);
+	// const { msgError: error } = uiState;
 
 	const [formValues, handleInputChange, reset] = useForm({
-		name: "ArnauPrueba",
-		email: "arnauPrueba@gmail.com",
-		password: "123456",
-		password2: "123456"
+		name: "",
+		email: "",
+		password: "",
+		password2: ""
 	});
 
 	const { name, email, password, password2 } = formValues;
@@ -65,15 +65,7 @@ const RegisterScreen = () => {
 		<>
 			<h3 className="auth__title">Register</h3>
 
-			<form onSubmit={handleSubmit}>
-
-				{/* { error !== null && 
-					(
-						<div className="auth__alert-error">
-							{error}
-						</div>
-					) 
-				} */}
+			<form onSubmit={handleSubmit} className="animate__animated animate__fadeIn animate__faster">
 
 				<input 
 					type="text" 

@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { types } from "../types/types";
 import { firebase, googleAuthProvider } from "../firebase/firebaseConfig";
 import { uiFinishLoading, uiStartLoading } from "./ui";
+import { cleanNotesOnLogout } from "./notes";
 
 export const startLoginEmailPassword = (email, password) => {
 	return (dispatch) => {
@@ -10,9 +11,9 @@ export const startLoginEmailPassword = (email, password) => {
 		firebase.auth().signInWithEmailAndPassword(email, password)
 			.then((userCred) => {
 				const { user } = userCred;
-				console.log(user);
 				dispatch(login(user.uid, user.displayName));
 				dispatch(uiFinishLoading());
+				console.clear();
 			})
 			.catch((e) => {
 				dispatch(uiFinishLoading());
@@ -47,6 +48,7 @@ export const startGoogleLogin = () => {
 			.then( userCred => {
 				const { user } = userCred;
 				dispatch(login(user.uid, user.displayName));
+				console.clear();
 			});
 	};
 };
@@ -54,7 +56,7 @@ export const startGoogleLogin = () => {
 export const sendResetPasswordEmail = (email) => {
 	return () => {
 		firebase.auth().sendPasswordResetEmail(email)
-			.then((userCred) => {
+			.then(() => {
 				Swal.fire("Success", "You can check your inbox for your reset password email", "success");
 			});
 	};
@@ -72,6 +74,7 @@ export const startLogout = () => {
 		await firebase.auth().signOut();
 
 		dispatch(logout());
+		dispatch(cleanNotesOnLogout());
 	};
 };
 

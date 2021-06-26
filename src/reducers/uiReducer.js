@@ -2,7 +2,8 @@ import { types } from "../types/types";
 
 const initialState = {
 	loading: false,
-	msgError: null
+	msgError: null,
+	visitedFirstTime: true
 };
 
 export const uiReducer = (state = initialState, action) => {
@@ -29,6 +30,11 @@ export const uiReducer = (state = initialState, action) => {
 		return {
 			...state,
 			loading: false
+		};
+	case types.uiVisitedOnce:
+		return {
+			...state,
+			visitedFirstTime: false
 		};
 		
 	default:

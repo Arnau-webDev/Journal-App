@@ -41,6 +41,8 @@
     color: $dark-grey;
     flex: 1 1 auto;
     resize: none;
+    max-width: 90%;
+    text-align: justify;
 }
 
 .notes__image {

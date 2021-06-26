@@ -13,7 +13,6 @@ export const removeError = () => {
 	};
 };
 
-
 export const uiStartLoading = () => {
 	return {
 		type: types.uiStartLoading
@@ -23,5 +22,11 @@ export const uiStartLoading = () => {
 export const uiFinishLoading = () => {
 	return {
 		type: types.uiFinishLoading
+	};
+};
+
+export const uiVisitedLoginPageOnce = () => {
+	return {
+		type: types.uiVisitedOnce
 	};
 };

@@ -5,13 +5,16 @@ import JournalEntry from "./JournalEntry";
 const JournalEntries = () => {
 
 	const { notes } = useSelector(state => state.notes);
-	console.log(notes);
 
 	return (
 		<div className="journal__entries">
-			{notes.map((note) => {
-				return <JournalEntry key={note.id} note={note} />;
-			})}
+			{notes
+				.sort((a, b) => {
+					return a.date > b.date ? -1 : 1;
+				})
+				.map((note) => {
+					return <JournalEntry key={note.id} note={note} />;
+				})}
 		</div>
 	);
 };

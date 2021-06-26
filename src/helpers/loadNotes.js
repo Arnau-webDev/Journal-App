@@ -5,15 +5,11 @@ export const loadNotes = async ( uid ) => {
 	const notes = [];
 
 	notesSnap.forEach((snapNote) => {
-		console.log(snapNote.data());
 		notes.push({
 			id: snapNote.id,
 			...snapNote.data()
 		});
 	});
-
-	console.log(notesSnap);
-	console.log(notes);
 
 	return notes;
 };

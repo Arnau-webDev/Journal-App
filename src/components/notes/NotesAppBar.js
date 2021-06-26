@@ -8,7 +8,6 @@ const NotesAppBar = () => {
 	const { active: note } = useSelector(state => state.notes);
 
 	const handlePictureUpload = () => {
-		console.log("Upload");
 		document.querySelector("#fileSelector").click();
 	};
 
@@ -31,7 +30,7 @@ const NotesAppBar = () => {
 			<input id="fileSelector" name="file" type="file" style={{ display: "none" }} onChange={handleFileChange}/>
 
 			<div>
-				<button className="btn" onClick={handlePictureUpload}>Picture</button>
+				<button className="btn" onClick={handlePictureUpload}>Upload Picture</button>
 				<button className="btn" onClick={handleSave}>Save</button>
 			</div>
 		</div>

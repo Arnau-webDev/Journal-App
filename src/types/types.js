@@ -1,4 +1,3 @@
-import { notesReducer } from "../reducers/notesReducer";
 
 export const types = {
 	login: "[Auth] Login",
@@ -9,6 +8,7 @@ export const types = {
 
 	uiStartLoading: "[UI] Start loading",
 	uiFinishLoading: "[UI] Finish loading",
+	uiVisitedOnce: "[UI] Visited once",
 
 	notesAddNew: "[NOTES] New note",
 	notesActive: "[NOTES] Set active note",
